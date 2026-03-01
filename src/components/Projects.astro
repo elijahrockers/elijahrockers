@@ -3,45 +3,89 @@ const projects = [
   {
     title: "DICOM PHI Screening Agent",
     description:
-      "Agentic pipeline that scans DICOM datasets for PHI using two-layer analysis: header tag inspection against HIPAA Safe Harbor (50+ tags) and OCR-based pixel PHI detection with Claude AI classification. Claude orchestrates the workflow via tool use, aggregating findings into structured de-identification reports.",
-    tags: ["Python", "pydicom", "pytesseract", "Claude API", "FastAPI", "Pydantic"],
-    github: "#",
+      "Two-layer DICOM PHI detection: header tag analysis against HIPAA Safe Harbor plus OCR-based pixel inspection with Claude classification.",
+    tags: ["Python", "pydicom", "pytesseract", "Claude API", "FastAPI"],
   },
   {
-    title: "Clinical Text-to-SQL Agent (OMOP CDM)",
+    title: "Clinical Text-to-SQL Agent",
     description:
-      "Natural language interface over an OMOP CDM clinical data warehouse, translating plain-English clinical questions into SQL with iterative refinement. Demonstrates the workflow that would sit on top of an Epic Clarity/Caboodle environment in production, using the open OMOP standard with synthetic patient data.",
+      "Natural language to SQL over OMOP CDM clinical data with iterative refinement, built for Epic Clarity/Caboodle workflows.",
     tags: ["Python", "Claude API", "OMOP CDM", "SQLite", "Streamlit"],
-    github: "#",
+  },
+  {
+    title: "CT-Based Sarcopenia Quantification",
+    description:
+      "Automated skeletal muscle segmentation and quantification from CT imaging. Patent pending.",
+    tags: ["Python", "Machine Learning", "Docker", "Medical Imaging"],
+  },
+  {
+    title: "PHI Scrubbing & Tokenization",
+    description:
+      "Automated PHI scrubbing and tokenization for multi-site clinical research, ensuring HIPAA compliance across institutions.",
+    tags: ["Python", "PHI Compliance", "HIPAA", "Data Engineering"],
+  },
+  {
+    title: "ECG Image Processing",
+    description:
+      "Scalable workflows for rasterized and vectorized ECG image analysis supporting large-scale cardiac research.",
+    tags: ["Python", "Computer Vision", "ECG", "Medical Imaging"],
+  },
+  {
+    title: "REDCap & XNAT Enterprise Scaling",
+    description:
+      "Scaled REDCap and XNAT to enterprise-wide platforms supporting 50+ investigators with 21 CFR Part 11 compliance.",
+    tags: ["REDCap", "XNAT", "Infrastructure", "Compliance", "Linux"],
   },
 ];
 ---
 
 <section id="projects" class="py-20 px-6">
-  <div class="max-w-4xl mx-auto">
-    <h2 class="text-2xl font-bold text-slate-900 mb-8">Projects</h2>
-    <div class="grid gap-6 md:grid-cols-2">
-      {projects.map((project) => (
-        <div class="bg-white rounded-lg border border-slate-200 p-6 hover:shadow-md transition-shadow">
-          <h3 class="text-lg font-semibold text-slate-900 mb-3">{project.title}</h3>
-          <p class="text-slate-600 text-sm leading-relaxed mb-4">{project.description}</p>
-          <div class="flex flex-wrap gap-2 mb-4">
-            {project.tags.map((tag) => (
-              <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded-md font-medium">
-                {tag}
-              </span>
-            ))}
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-8 max-w-4xl mx-auto">Projects</h2>
+    <div class="overflow-hidden">
+      <div class="marquee-track flex gap-6 w-max hover:[animation-play-state:paused]">
+        {projects.map((project) => (
+          <div class="w-[300px] shrink-0 bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 p-6 hover:shadow-md transition-shadow">
+            <h3 class="text-lg font-semibold text-slate-900 dark:text-slate-100 mb-2">{project.title}</h3>
+            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">{project.description}</p>
+            <div class="flex flex-wrap gap-2">
+              {project.tags.map((tag) => (
+                <span class="px-2 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs rounded-md font-medium">
+                  {tag}
+                </span>
+              ))}
+            </div>
           </div>
-          <a
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center text-sm text-blue-600 hover:text-blue-700 font-medium"
-          >
-            View on GitHub &rarr;
-          </a>
-        </div>
-      ))}
+        ))}
+        {projects.map((project) => (
+          <div class="w-[300px] shrink-0 bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 p-6 hover:shadow-md transition-shadow" aria-hidden="true">
+            <h3 class="text-lg font-semibold text-slate-900 dark:text-slate-100 mb-2">{project.title}</h3>
+            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">{project.description}</p>
+            <div class="flex flex-wrap gap-2">
+              {project.tags.map((tag) => (
+                <span class="px-2 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs rounded-md font-medium">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   </div>
 </section>
+
+<style>
+  .marquee-track {
+    animation: marquee 40s linear infinite;
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+</style>
